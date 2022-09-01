@@ -23,10 +23,11 @@ parseNum: push {fp, lr}
           add  fp, sp, FP_OFFSET
           
           // set up r0
-          add  r0, 8 // char *argv[]  -- argv[2] pointer size 4?
+          // ldr  r0, [r0]  // get *argv[] to r0  
+          add  r0, 8 // go to the address of argv[2]
           
           // set sp for double word alignment
-          sub  sp, sp, 8
+          // sub  sp, sp, 8
 
           // char *endPtr;
           ldr  r1, =NULL

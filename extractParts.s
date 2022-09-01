@@ -21,22 +21,23 @@
 extractParts: push {fp, lr}
               add  fp, sp, FP_OFFSET
               
-              sub  sp, sp, 8
+              // sub  sp, sp, 8
 
-              // load struct pointer to r4, address of the struct
-              ldr  r4, [r1] 
+              // store the number to stack
+              // str  r0, [fp, -8]
 
-              // store ieeeBin to stack
-              strd r0, [fp, -12]
-
-              // set the sign bit
+              // set sign to 0
               mov  r2, 0
-              strb r2, [r4]
-              
-             
-              // load first 4 bytes of the number
-              ldr  r1, [sp, 4]
-           
+              strb r2, [r1]
+
+              // shift number and set the exp
+              lsr  r2, r0, 23
+              strb r2, [r1, 1]
+
+              // set mantissa
+              lsl  r2, r0, 9
+              rol  r2, r0, 32
+              str  r2, [r1, 4]
 
               sub  sp, fp, FP_OFFSET
               pop  {fp, lr}
