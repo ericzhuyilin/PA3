@@ -9,7 +9,6 @@
 #define FLAGH "-h"
 
 int main(int argc, char* argv[]){
-    printf("%d\n", argc);
     if(argc != 3){
         fprintf(stderr, INVALID_ARGS);
 	fprintf(stderr, SHORT_USAGE);
