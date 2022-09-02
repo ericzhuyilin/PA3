@@ -5,6 +5,7 @@
 
 @ Declare any external functions
               .extern strtoul
+              .global extractParts
 
 @ Define any constants
               .equ    FP_OFFSET, 4
@@ -27,17 +28,19 @@ extractParts: push {fp, lr}
               // str  r0, [fp, -8]
 
               // set sign to 0
-              mov  r2, 0
+              lsr  r2, r0, 31
               strb r2, [r1]
 
               // shift number and set the exp
               lsr  r2, r0, 23
+              sub  r2, 127
               strb r2, [r1, 1]
 
               // set mantissa
-              lsl  r2, r0, 9
-              rol  r2, r0, 32
-              str  r2, [r1, 4]
+              lsl  r0, 9
+              lsr  r0, 9
+              // rol  r2, r0, 23
+              str  r0, [r1, 4]
 
               sub  sp, fp, FP_OFFSET
               pop  {fp, lr}

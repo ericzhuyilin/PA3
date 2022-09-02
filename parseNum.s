@@ -5,7 +5,7 @@
 
 @ Declare any external functions
        .extern strtoul
-       //.global main
+       .global parseNum
 
 @ Define any constants
        .equ    FP_OFFSET, 4
@@ -23,8 +23,10 @@ parseNum: push {fp, lr}
           add  fp, sp, FP_OFFSET
           
           // set up r0
-          // ldr  r0, [r0]  // get *argv[] to r0  
-          add  r0, 8 // go to the address of argv[2]
+          // ldr  r0, [r0]  // get *argv[] to r0 
+ 
+          ldr  r0, [r0, 8]
+          // add  r0, 8 // point to  argv[2]
           
           // set sp for double word alignment
           // sub  sp, sp, 8
@@ -33,7 +35,7 @@ parseNum: push {fp, lr}
           ldr  r1, =NULL
 
           // set up r2
-          mov  r2, 16
+          mov  r2, 0
 
           bl   strtoul
 
