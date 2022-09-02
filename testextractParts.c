@@ -25,7 +25,7 @@ void testextractParts(){
     extractParts(num1, &s1);
     TEST( s1.sign == 0 );
     TEST( s1.exp == 7 );
-    TEST( s1.mantissa == 4063232 );
+    TEST( s1.mantissa == 12451840 );
 
 
 
@@ -36,7 +36,7 @@ void testextractParts(){
     extractParts(num2, &s2);
     TEST( s2.sign == 0 );
     TEST( s2.exp == 26 );
-    TEST( s2.mantissa == 2722503 );
+    TEST( s2.mantissa == 0xA98AC7 );
 
 
 
@@ -49,7 +49,7 @@ void testextractParts(){
     extractParts(num3, &s3);
     TEST( s3.sign == 1 );
     TEST( s3.exp == 10 );
-    TEST( s3.mantissa == 1720320 );
+    TEST( s3.mantissa == 0x9A4000 );
 
 
 
@@ -62,7 +62,7 @@ void testextractParts(){
     extractParts(num4, &s4);
     TEST( s4.sign == 0 );
     TEST( s4.exp == 6 );
-    TEST( s4.mantissa == 3178496 );
+    TEST( s4.mantissa == 0xB08000 );
     
 }
 

@@ -39,6 +39,8 @@ extractParts: push {fp, lr}
               // set mantissa
               lsl  r0, 9
               lsr  r0, 9
+              mov  r3, 0x800000
+              orr  r0, r0, r3
               // rol  r2, r0, 23
               str  r0, [r1, 4]
 
